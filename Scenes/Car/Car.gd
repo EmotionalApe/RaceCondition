@@ -9,6 +9,8 @@ class_name Car
 @export var bounce_time := 0.8
 @export var bounce_force := 30.0
 
+@onready var crashEffect := $CrashEffect
+
 
 
 var throttle : float
@@ -54,17 +56,17 @@ func bounce_done():
 	set_physics_process(true)
 	bounce_tween = null
 	
-func bounce():
+func bounce(dirToPath : Vector2):
 	set_physics_process(false)
 	velocity = 0.0
-	bounce_target = position + (-transform.x * bounce_force)
+	bounce_target = position + (dirToPath * bounce_force)
 	if bounce_tween and bounce_tween.is_running():
 		bounce_tween.kill()
 	rotation_degrees = fmod(rotation_degrees, 360.0)
 	bounce_tween = create_tween()
 	bounce_tween.set_parallel()
 	bounce_tween.tween_property(self, "position", bounce_target, bounce_time)
-	bounce_tween.tween_property(self, "rotation_degrees", rotation_degrees + 540.0, bounce_time)
+	bounce_tween.tween_property(self, "rotation_degrees", rotation_degrees + 720.0, bounce_time)
 	bounce_tween.set_parallel(false)
 	bounce_tween.finished.connect(bounce_done)
 	
@@ -72,5 +74,6 @@ func bounce():
 	#await get_tree().create_timer(bounce_time).timeout
 	#set_physics_process(true)
 
-func hit_boundary():
-	bounce()
+func hit_boundary(dirToPath : Vector2):
+	crashEffect.restart()
+	bounce(dirToPath)
