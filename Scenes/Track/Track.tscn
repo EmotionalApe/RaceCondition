@@ -1,13 +1,15 @@
 [gd_scene format=3 uid="uid://4p751etw62qm"]
 
+[ext_resource type="Script" uid="uid://d3kca3shgpxvt" path="res://Scenes/Track/Track.gd" id="1_0do6f"]
 [ext_resource type="Texture2D" uid="uid://c1m5vk3rejca7" path="res://Assets/Images/Monaco.png" id="1_fv5kj"]
 [ext_resource type="Texture2D" uid="uid://2msta3ane5h5" path="res://Assets/Images/WaterBg.png" id="1_okhpi"]
 [ext_resource type="PackedScene" uid="uid://b2um0jk0nxemb" path="res://Scenes/Car/Car.tscn" id="3_0ld5s"]
 
 [node name="Track" type="Node" unique_id=2131199822]
+script = ExtResource("1_0do6f")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1318502248]
-position = Vector2(620, 346.99997)
+position = Vector2(627, 342)
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("1_okhpi")
 
@@ -19,3 +21,14 @@ texture = ExtResource("1_fv5kj")
 [node name="Car" parent="." unique_id=631794112 instance=ExtResource("3_0ld5s")]
 position = Vector2(647, 485)
 scale = Vector2(1.1, 1.1)
+
+[node name="TrackCollision" type="Area2D" parent="." unique_id=1442703981]
+collision_layer = 0
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="TrackCollision" unique_id=1354932197]
+polygon = PackedVector2Array(507, 175, 434, 73, 376, 35, 305, 61, 226, 103, 140, 196, 110, 245, 81, 311, 72, 414, 111, 495, 172, 534, 279, 542, 471, 514, 592, 541, 714, 582, 795, 607, 886, 621, 944, 600, 973, 523, 951, 459, 914, 420, 816, 353, 958, 370, 1017, 362, 1057, 335, 1084, 297, 1090, 258, 1071, 202, 1044, 165, 966, 107, 880, 63, 799, 27, 713, 11, 642, 51, 561, 131, 520, 179, 546, 0, 1060, -30, 1170, -22, 1121, 623, 892, 674, 36, 680, 39, 137, 46, -2, 481, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TrackCollision" unique_id=2090820601]
+polygon = PackedVector2Array(349, 177, 273, 233, 222, 297, 194, 354, 205, 412, 250, 420, 318, 411, 406, 397, 491, 391, 583, 410, 755, 464, 698, 411, 674, 363, 672, 317, 693, 264, 740, 231, 797, 226, 953, 246, 820, 171, 743, 143, 691, 175, 644, 224, 557, 315, 498, 333, 442, 294)
+
+[connection signal="area_entered" from="TrackCollision" to="." method="_on_track_collision_area_entered"]
