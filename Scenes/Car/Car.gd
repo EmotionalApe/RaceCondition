@@ -1,6 +1,8 @@
 extends Area2D
 class_name Car
 
+enum CarState {DRIVING, BOUNCING, SLIPPING}
+
 @export var maxSpeed := 380.0
 @export var acceleration := 100.0
 @export var friction := 150.0
@@ -18,6 +20,7 @@ var velocity : float
 var steer : float
 var bounce_tween : Tween
 var bounce_target := Vector2.ZERO
+var state := CarState.DRIVING
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,6 +33,8 @@ func _process(_delta):
 	steer = Input.get_axis("ui_left", "ui_right")
 
 func _physics_process(delta):
+	if state != CarState.DRIVING:
+		return 
 	apply_throttle(delta)
 	apply_steer(delta)
 	position += transform.x * delta * velocity
@@ -51,29 +56,39 @@ func apply_throttle(delta):
 
 func apply_steer(delta):
 	rotate(steer * get_steer_factor() * delta)
-	
+
+#region State
+func change_state(newState : CarState):
+	if (newState == state) : return;
+	state = newState
+	match newState:
+		CarState.BOUNCING:
+			bounce()
+		CarState.SLIPPING:
+			pass
+#endregion
+
+
+#region Bounce
 func bounce_done():
-	set_physics_process(true)
 	bounce_tween = null
+	change_state(CarState.DRIVING)
 	
-func bounce(dirToPath : Vector2):
-	set_physics_process(false)
+func bounce():
 	velocity = 0.0
-	bounce_target = position + (dirToPath * bounce_force)
 	if bounce_tween and bounce_tween.is_running():
 		bounce_tween.kill()
 	rotation_degrees = fmod(rotation_degrees, 360.0)
 	bounce_tween = create_tween()
 	bounce_tween.set_parallel()
+	bounce_tween.set_ease(Tween.EASE_IN_OUT)
 	bounce_tween.tween_property(self, "position", bounce_target, bounce_time)
 	bounce_tween.tween_property(self, "rotation_degrees", rotation_degrees + 720.0, bounce_time)
 	bounce_tween.set_parallel(false)
 	bounce_tween.finished.connect(bounce_done)
-	
-	#position += -transform.x * bounce_force
-	#await get_tree().create_timer(bounce_time).timeout
-	#set_physics_process(true)
 
 func hit_boundary(dirToPath : Vector2):
 	crashEffect.restart()
-	bounce(dirToPath)
+	bounce_target = position + (dirToPath * bounce_force)
+	change_state(CarState.BOUNCING)
+#endregion 
