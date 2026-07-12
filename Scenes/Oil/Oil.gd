@@ -12,4 +12,4 @@ func _ready():
 
 func _on_area_entered(area):
 	if area is Car:
-		print("oil hit")
+		area.hit_oil()
