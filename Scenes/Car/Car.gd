@@ -110,19 +110,19 @@ func slip_done():
 	change_state(CarState.DRIVING)
 
 func slip_on_oil():
-	velocity = 0.0
+	velocity *= 0.5
 	kill_slip_tween()
 	rotation_degrees = fmod(rotation_degrees, 360.0)
 	velocity *= randf_range(slip_speed_range.x, slip_speed_range.y)
 	slip_tween = create_tween()
 	slip_tween.set_parallel()
 	slip_tween.set_ease(Tween.EASE_IN_OUT)
-	slip_tween.tween_property(self, "position", position+(transform.x * velocity), bounce_time)
-	slip_tween.tween_property(self, "rotation_degrees", rotation_degrees + 720.0, bounce_time)
+	slip_tween.tween_property(self, "position", position+(transform.x * velocity), bounce_time-0.3)
+	slip_tween.tween_property(self, "rotation_degrees", rotation_degrees + 360.0, bounce_time-0.3)
 	slip_tween.set_parallel(false)
 	slip_tween.finished.connect(slip_done)
 
 func hit_oil():
 	if state == CarState.BOUNCING : return
-	state = CarState.SLIPPING
+	change_state(CarState.SLIPPING)
 #endregion
