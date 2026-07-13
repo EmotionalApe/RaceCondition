@@ -2,6 +2,10 @@ extends Node
 class_name track
 
 @onready var track_path := $TrackPath
+@onready var verifications_holder:= $VerificationsHolder
+@onready var cars_holder := $CarsHolder
+
+
 var trackCurve = Curve2D
 
 func _ready():
@@ -15,3 +19,8 @@ func get_direction_to_path(fromPos : Vector2):
 func _on_track_collision_area_entered(area):
 	if area is Car:
 		area.hit_boundary(get_direction_to_path(area.position))
+
+
+func _on_start_line_area_entered(area):
+	if area is Car:
+		area.lap_completed()

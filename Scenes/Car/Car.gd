@@ -24,12 +24,15 @@ var bounce_tween : Tween
 var bounce_target := Vector2.ZERO
 
 var slip_tween : Tween
+var verifications_passed = []
+var verifications = []
 
 var state := CarState.DRIVING
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-	pass # Replace with function body.
+	verifications = get_tree().get_nodes_in_group("verifications")
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -43,6 +46,7 @@ func _physics_process(delta):
 	apply_throttle(delta)
 	apply_steer(delta)
 	position += transform.x * delta * velocity
+	
 
 func get_steer_factor():
 	return clampf(
@@ -126,3 +130,13 @@ func hit_oil():
 	if state == CarState.BOUNCING : return
 	change_state(CarState.SLIPPING)
 #endregion
+
+func lap_completed():
+	if verifications.size() == verifications_passed.size() :
+		print("lap_completed")
+	verifications_passed.clear()
+	
+func hit_verification(verification_id):
+	if verification_id not in verifications_passed:
+		verifications_passed.append(verification_id)
+		pass

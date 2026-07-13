@@ -5,12 +5,17 @@
 [ext_resource type="Texture2D" uid="uid://2msta3ane5h5" path="res://Assets/Images/WaterBg.png" id="1_okhpi"]
 [ext_resource type="PackedScene" uid="uid://b2um0jk0nxemb" path="res://Scenes/Car/Car.tscn" id="3_0ld5s"]
 [ext_resource type="PackedScene" uid="uid://5144xoiqrode" path="res://Scenes/OilDropper/OilDropper.tscn" id="5_vfgym"]
+[ext_resource type="Texture2D" uid="uid://dec3bup5l0rha" path="res://Assets/Images/FinishLine.png" id="6_wtm8k"]
+[ext_resource type="PackedScene" uid="uid://b4p07wxs0n0jn" path="res://Scenes/Verification/Verification.tscn" id="7_6d5m8"]
 
 [sub_resource type="Curve2D" id="Curve2D_0do6f"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 502, 452, -28.749601, 45.7864, 50.0456, -86.2488, 889, 537, -45.7864, 62.8232, 45.7864, -62.8232, 734, 303, -44.7216, 88.3784, 33.0088, -76.6656, 1035, 292, 28.749601, -14.9072, -103.2856, 19.1664, 724, 58, 88.3784, -15.972, -72.4064, -29.8144, 509, 266, 37.268, -17.0368, -57.499203, -10.648001, 349, 97, 0, 0, 0, 0, 169, 249, -41.527203, -18.1016, 20.231201, 76.6656, 135, 436, 0, 0, 0, 0, 301, 478, 0, 0, 0, 0, 502, 452)
 }
 point_count = 11
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6d5m8"]
+size = Vector2(128, 16)
 
 [node name="Track" type="Node" unique_id=2131199822]
 script = ExtResource("1_0do6f")
@@ -24,10 +29,6 @@ texture = ExtResource("1_okhpi")
 position = Vector2(584, 321)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("1_fv5kj")
-
-[node name="Car" parent="." unique_id=631794112 instance=ExtResource("3_0ld5s")]
-position = Vector2(647, 485)
-scale = Vector2(1.1, 1.1)
 
 [node name="TrackCollision" type="Area2D" parent="." unique_id=1442703981]
 collision_layer = 0
@@ -53,4 +54,39 @@ oilContainer = NodePath("../../OilContainer")
 
 [node name="OilContainer" type="Node" parent="." unique_id=185683337]
 
+[node name="StartLine" type="Area2D" parent="." unique_id=1430295588]
+position = Vector2(415.00003, 459.00003)
+rotation = -1.6665732
+collision_layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="StartLine" unique_id=250701749]
+scale = Vector2(1, 0.55)
+texture = ExtResource("6_wtm8k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartLine" unique_id=1566797247]
+scale = Vector2(1, 0.550166)
+shape = SubResource("RectangleShape2D_6d5m8")
+
+[node name="VerificationsHolder" type="Node" parent="." unique_id=522457335]
+
+[node name="Verification" parent="VerificationsHolder" unique_id=452448386 groups=["verifications"] instance=ExtResource("7_6d5m8")]
+position = Vector2(783.00006, 406)
+rotation = -0.48930335
+
+[node name="Verification2" parent="VerificationsHolder" unique_id=1038670386 groups=["verifications"] instance=ExtResource("7_6d5m8")]
+position = Vector2(615, 153.99997)
+rotation = 0.7222334
+
+[node name="Verification3" parent="VerificationsHolder" unique_id=196336344 groups=["verifications"] instance=ExtResource("7_6d5m8")]
+position = Vector2(183.99994, 247)
+rotation = 0.4975313
+
+[node name="CarsHolder" type="Node" parent="." unique_id=309213574]
+
+[node name="Car" parent="CarsHolder" unique_id=631794112 instance=ExtResource("3_0ld5s")]
+position = Vector2(316.00006, 468.99997)
+rotation = -0.16304779
+scale = Vector2(1.1, 1.1)
+
 [connection signal="area_entered" from="TrackCollision" to="." method="_on_track_collision_area_entered"]
+[connection signal="area_entered" from="StartLine" to="." method="_on_start_line_area_entered"]
