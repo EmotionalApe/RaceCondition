@@ -3,6 +3,8 @@ class_name Car
 
 enum CarState {DRIVING, BOUNCING, SLIPPING}
 
+@export var carName := "Maruf"
+@export var carNumber := 0
 @export var maxSpeed := 380.0
 @export var acceleration := 100.0
 @export var friction := 150.0
@@ -22,6 +24,7 @@ var velocity : float
 var steer : float
 var bounce_tween : Tween
 var bounce_target := Vector2.ZERO
+var lap_time : float
 
 var slip_tween : Tween
 var verifications_passed = []
@@ -36,7 +39,8 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _process(delta):
+	lap_time += delta
 	throttle = Input.get_action_strength("ui_up")
 	steer = Input.get_axis("ui_left", "ui_right")
 
@@ -133,8 +137,11 @@ func hit_oil():
 
 func lap_completed():
 	if verifications.size() == verifications_passed.size() :
-		print("lap_completed")
+		var lcd = LapCompleteData.new(self, lap_time)
+		print(lcd)
+		EventHub.emit_on_lap_completed(lcd)
 	verifications_passed.clear()
+	lap_time = 0.0
 	
 func hit_verification(verification_id):
 	if verification_id not in verifications_passed:

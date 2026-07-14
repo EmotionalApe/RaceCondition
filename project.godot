@@ -19,6 +19,10 @@ run/main_scene="uid://4p751etw62qm"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="uid://yyr47gbb1gym"
 
+[autoload]
+
+EventHub="*uid://bcurwg6wny3pu"
+
 [display]
 
 window/stretch/mode="canvas_items"
