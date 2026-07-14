@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://5144xoiqrode" path="res://Scenes/OilDropper/OilDropper.tscn" id="5_vfgym"]
 [ext_resource type="Texture2D" uid="uid://dec3bup5l0rha" path="res://Assets/Images/FinishLine.png" id="6_wtm8k"]
 [ext_resource type="PackedScene" uid="uid://b4p07wxs0n0jn" path="res://Scenes/Verification/Verification.tscn" id="7_6d5m8"]
+[ext_resource type="PackedScene" uid="uid://d222mt6k3qrkr" path="res://RaceController/RaceController.tscn" id="8_pxc04"]
 
 [sub_resource type="Curve2D" id="Curve2D_0do6f"]
 _data = {
@@ -87,6 +88,8 @@ rotation = 0.4975313
 position = Vector2(316.00006, 468.99997)
 rotation = -0.16304779
 scale = Vector2(1.1, 1.1)
+
+[node name="RaceController" parent="." unique_id=463910295 instance=ExtResource("8_pxc04")]
 
 [connection signal="area_entered" from="TrackCollision" to="." method="_on_track_collision_area_entered"]
 [connection signal="area_entered" from="StartLine" to="." method="_on_start_line_area_entered"]
