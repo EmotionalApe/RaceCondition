@@ -4,12 +4,19 @@ class_name track
 @onready var track_path := $TrackPath
 @onready var verifications_holder:= $VerificationsHolder
 @onready var cars_holder := $CarsHolder
+@onready var track_processor = $TrackPath/TrackProcessor
+@onready var waypoints_holder = $WaypointsHolder
 
 
 var trackCurve = Curve2D
 
 func _ready():
+	await setup()
+
+func setup():
 	trackCurve = track_path.curve
+	track_processor.build_waypoint_data(waypoints_holder)
+	await track_processor.build_completed
 
 func get_direction_to_path(fromPos : Vector2):
 	var closestOffset : float = trackCurve.get_closest_offset(fromPos)
@@ -20,7 +27,7 @@ func _on_track_collision_area_entered(area):
 	if area is Car:
 		area.hit_boundary(get_direction_to_path(area.position))
 
-
+ 
 func _on_start_line_area_entered(area):
 	if area is Car:
 		area.lap_completed()

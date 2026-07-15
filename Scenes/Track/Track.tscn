@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c1m5vk3rejca7" path="res://Assets/Images/Monaco.png" id="1_fv5kj"]
 [ext_resource type="Texture2D" uid="uid://2msta3ane5h5" path="res://Assets/Images/WaterBg.png" id="1_okhpi"]
 [ext_resource type="PackedScene" uid="uid://b2um0jk0nxemb" path="res://Scenes/Car/Car.tscn" id="3_0ld5s"]
+[ext_resource type="PackedScene" uid="uid://b77yyi1tnu3ca" path="res://Scenes/TrackProcessor/TrackProcessor.tscn" id="5_2lgdg"]
 [ext_resource type="PackedScene" uid="uid://5144xoiqrode" path="res://Scenes/OilDropper/OilDropper.tscn" id="5_vfgym"]
 [ext_resource type="Texture2D" uid="uid://dec3bup5l0rha" path="res://Assets/Images/FinishLine.png" id="6_wtm8k"]
 [ext_resource type="PackedScene" uid="uid://b4p07wxs0n0jn" path="res://Scenes/Verification/Verification.tscn" id="7_6d5m8"]
@@ -32,7 +33,7 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("1_fv5kj")
 
 [node name="TrackCollision" type="Area2D" parent="." unique_id=1442703981]
-collision_layer = 0
+collision_layer = 2
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="TrackCollision" unique_id=1354932197]
 polygon = PackedVector2Array(507, 175, 434, 73, 376, 35, 305, 61, 226, 103, 140, 196, 110, 245, 81, 311, 72, 414, 111, 495, 172, 534, 279, 542, 471, 514, 592, 541, 714, 582, 795, 607, 886, 621, 944, 600, 973, 523, 951, 459, 914, 420, 816, 353, 958, 370, 1017, 362, 1057, 335, 1084, 297, 1090, 258, 1071, 202, 1044, 165, 966, 107, 880, 63, 799, 27, 713, 11, 642, 51, 561, 131, 520, 179, 546, 0, 1060, -30, 1170, -22, 1121, 623, 892, 674, 36, 680, 39, 137, 46, -2, 481, 0)
@@ -52,6 +53,10 @@ oilContainer = NodePath("../../OilContainer")
 position = Vector2(502, 452)
 rotation = 0.35003638
 oilContainer = NodePath("../../OilContainer")
+
+[node name="TrackProcessor" parent="TrackPath" unique_id=1742298289 instance=ExtResource("5_2lgdg")]
+position = Vector2(502, 452)
+rotation = 0.35003638
 
 [node name="OilContainer" type="Node" parent="." unique_id=185683337]
 
@@ -90,6 +95,8 @@ rotation = -0.16304779
 scale = Vector2(1.1, 1.1)
 
 [node name="RaceController" parent="." unique_id=463910295 instance=ExtResource("8_pxc04")]
+
+[node name="WaypointsHolder" type="Node" parent="." unique_id=879417270]
 
 [connection signal="area_entered" from="TrackCollision" to="." method="_on_track_collision_area_entered"]
 [connection signal="area_entered" from="StartLine" to="." method="_on_start_line_area_entered"]
