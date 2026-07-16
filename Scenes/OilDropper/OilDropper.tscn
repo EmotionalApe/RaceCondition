@@ -6,6 +6,7 @@
 [node name="OilDropper" type="PathFollow2D" unique_id=962719517]
 script = ExtResource("1_f7gkg")
 debug = false
+oilEnabled = true
 
 [node name="DebugDot" type="Sprite2D" parent="." unique_id=1960481052]
 modulate = Color(0.99999994, 0.25813323, 0.87254107, 1)

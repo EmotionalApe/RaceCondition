@@ -4,12 +4,18 @@ extends PathFollow2D
 class_name TrackProcessor
 
 const WAYPOINT = preload("uid://bi3reukmi5kwa")
+signal build_completed
+
 @export var interval := 50.0 
 @export var grid_space := 75.0
 
 var waypoints : Array[Waypoint] 
-
-signal build_completed
+var first_waypoint : Waypoint:
+	get: 
+		if waypoints.size()==0:
+			printerr("first waypoint not there")
+			return null
+		return waypoints[0]
 
 func connect_waypoints():
 	var total_wp := waypoints.size() 
@@ -41,5 +47,4 @@ func build_waypoint_data(holder):
 	await generate_waypoints(holder)
 	connect_waypoints()
 	
-	for wp in waypoints:print(wp)
 	build_completed.emit()

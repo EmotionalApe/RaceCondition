@@ -17,7 +17,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="SuperSprint"
 run/main_scene="uid://4p751etw62qm"
 config/features=PackedStringArray("4.6", "Mobile")
-config/icon="uid://yyr47gbb1gym"
+config/icon="uid://b7wmt1hcagsow"
 
 [autoload]
 

@@ -3,12 +3,14 @@
 [ext_resource type="Script" uid="uid://d3kca3shgpxvt" path="res://Scenes/Track/Track.gd" id="1_0do6f"]
 [ext_resource type="Texture2D" uid="uid://c1m5vk3rejca7" path="res://Assets/Images/Monaco.png" id="1_fv5kj"]
 [ext_resource type="Texture2D" uid="uid://2msta3ane5h5" path="res://Assets/Images/WaterBg.png" id="1_okhpi"]
-[ext_resource type="PackedScene" uid="uid://b2um0jk0nxemb" path="res://Scenes/Car/Car.tscn" id="3_0ld5s"]
 [ext_resource type="PackedScene" uid="uid://b77yyi1tnu3ca" path="res://Scenes/TrackProcessor/TrackProcessor.tscn" id="5_2lgdg"]
 [ext_resource type="PackedScene" uid="uid://5144xoiqrode" path="res://Scenes/OilDropper/OilDropper.tscn" id="5_vfgym"]
 [ext_resource type="Texture2D" uid="uid://dec3bup5l0rha" path="res://Assets/Images/FinishLine.png" id="6_wtm8k"]
 [ext_resource type="PackedScene" uid="uid://b4p07wxs0n0jn" path="res://Scenes/Verification/Verification.tscn" id="7_6d5m8"]
+[ext_resource type="PackedScene" uid="uid://br35wxr7jk0mp" path="res://Scenes/Car/PlayerCar.tscn" id="8_2lgdg"]
 [ext_resource type="PackedScene" uid="uid://d222mt6k3qrkr" path="res://RaceController/RaceController.tscn" id="8_pxc04"]
+[ext_resource type="PackedScene" uid="uid://cxoceruu4558" path="res://Scenes/Car/CpuCar.tscn" id="9_iwdkm"]
+[ext_resource type="Texture2D" uid="uid://dr8u06xrl4yv6" path="res://Assets/Images/CarPurple.png" id="10_pptq5"]
 
 [sub_resource type="Curve2D" id="Curve2D_0do6f"]
 _data = {
@@ -39,7 +41,7 @@ collision_layer = 2
 polygon = PackedVector2Array(507, 175, 434, 73, 376, 35, 305, 61, 226, 103, 140, 196, 110, 245, 81, 311, 72, 414, 111, 495, 172, 534, 279, 542, 471, 514, 592, 541, 714, 582, 795, 607, 886, 621, 944, 600, 973, 523, 951, 459, 914, 420, 816, 353, 958, 370, 1017, 362, 1057, 335, 1084, 297, 1090, 258, 1071, 202, 1044, 165, 966, 107, 880, 63, 799, 27, 713, 11, 642, 51, 561, 131, 520, 179, 546, 0, 1060, -30, 1170, -22, 1121, 623, 892, 674, 36, 680, 39, 137, 46, -2, 481, 0)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TrackCollision" unique_id=2090820601]
-polygon = PackedVector2Array(349, 177, 273, 233, 222, 297, 194, 354, 205, 412, 250, 420, 318, 411, 406, 397, 491, 391, 583, 410, 755, 464, 698, 411, 674, 363, 672, 317, 693, 264, 740, 231, 797, 226, 953, 246, 820, 171, 743, 143, 691, 175, 644, 224, 557, 315, 498, 333, 442, 294)
+polygon = PackedVector2Array(349, 185, 273, 233, 222, 297, 194, 354, 205, 412, 250, 420, 318, 411, 406, 397, 491, 391, 583, 410, 755, 464, 698, 411, 674, 363, 672, 317, 693, 264, 740, 231, 797, 226, 930, 240, 820, 171, 735, 147, 691, 175, 644, 224, 557, 315, 498, 333, 442, 294)
 
 [node name="TrackPath" type="Path2D" parent="." unique_id=532038351]
 curve = SubResource("Curve2D_0do6f")
@@ -89,10 +91,13 @@ rotation = 0.4975313
 
 [node name="CarsHolder" type="Node" parent="." unique_id=309213574]
 
-[node name="Car" parent="CarsHolder" unique_id=631794112 instance=ExtResource("3_0ld5s")]
-position = Vector2(316.00006, 468.99997)
-rotation = -0.16304779
-scale = Vector2(1.1, 1.1)
+[node name="PlayerCar" parent="CarsHolder" unique_id=631794112 instance=ExtResource("8_2lgdg")]
+position = Vector2(332, 484)
+
+[node name="CpuCar" parent="CarsHolder" unique_id=298689435 instance=ExtResource("9_iwdkm")]
+position = Vector2(329, 444)
+debug = false
+carTexture = ExtResource("10_pptq5")
 
 [node name="RaceController" parent="." unique_id=463910295 instance=ExtResource("8_pxc04")]
 

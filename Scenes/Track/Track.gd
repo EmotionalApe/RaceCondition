@@ -17,6 +17,10 @@ func setup():
 	trackCurve = track_path.curve
 	track_processor.build_waypoint_data(waypoints_holder)
 	await track_processor.build_completed
+	
+	for car in $CarsHolder.get_children():
+		if car is CpuCar:
+			car.set_next_waypoint(track_processor.first_waypoint)
 
 func get_direction_to_path(fromPos : Vector2):
 	var closestOffset : float = trackCurve.get_closest_offset(fromPos)

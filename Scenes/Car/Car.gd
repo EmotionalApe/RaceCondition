@@ -3,72 +3,36 @@ class_name Car
 
 enum CarState {DRIVING, BOUNCING, SLIPPING}
 
+@export var carTexture : Texture2D = preload("uid://b7wmt1hcagsow")
 @export var carName := "Maruf"
 @export var carNumber := 0
-@export var maxSpeed := 380.0
-@export var acceleration := 100.0
-@export var friction := 150.0
-@export var steerStrength := 6.0
-@export var minSteerFactor := 0.5
 @export var bounce_time := 0.8
 @export var bounce_force := 30.0
-
 @export var slip_speed_range := Vector2(0.2, 0.5)
 
 @onready var crashEffect := $CrashEffect
+@onready var car_sprite = $CarSprite
 
 
-
-var throttle : float
 var velocity : float
-var steer : float
 var bounce_tween : Tween
 var bounce_target := Vector2.ZERO
 var lap_time : float
 
 var slip_tween : Tween
-var verifications_passed = []
-var verifications = []
+
 
 var state := CarState.DRIVING
 
 
 func _ready():
-	verifications = get_tree().get_nodes_in_group("verifications")
-	
-
+	#verifications = get_tree().get_nodes_in_group("verifications")
+	car_sprite.texture = carTexture
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	lap_time += delta
-	throttle = Input.get_action_strength("ui_up")
-	steer = Input.get_axis("ui_left", "ui_right")
 
-func _physics_process(delta):
-	if state != CarState.DRIVING:
-		return 
-	apply_throttle(delta)
-	apply_steer(delta)
-	position += transform.x * delta * velocity
-	
-
-func get_steer_factor():
-	return clampf(
-		1.0 - pow((velocity / maxSpeed), 2.0),
-		minSteerFactor, 
-		1.0
-	) * steerStrength
-
-func apply_throttle(delta):
-	if throttle > 0.0:
-		velocity += acceleration * delta
-	else:
-		velocity -= friction * delta
-	
-	velocity = clampf(velocity, 0.0, maxSpeed)
-
-func apply_steer(delta):
-	rotate(steer * get_steer_factor() * delta)
 
 #region State
 func change_state(newState : CarState):
@@ -136,14 +100,5 @@ func hit_oil():
 #endregion
 
 func lap_completed():
-	if verifications.size() == verifications_passed.size() :
-		var lcd = LapCompleteData.new(self, lap_time)
-		print(lcd)
-		EventHub.emit_on_lap_completed(lcd)
-	verifications_passed.clear()
 	lap_time = 0.0
 	
-func hit_verification(verification_id):
-	if verification_id not in verifications_passed:
-		verifications_passed.append(verification_id)
-		pass

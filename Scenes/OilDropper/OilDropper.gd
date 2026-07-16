@@ -9,6 +9,7 @@ const OIL = preload("res://Scenes/Oil/Oil.tscn")
 @export var oilContainer : Node
 @export var dropTimeVariance := Vector2(3.0, 8.0)
 @export var dropMargin := 25.0 
+@export var oilEnabled := false
 
 @onready var debug_dot = $DebugDot
 @onready var drop_timer = $DropTimer
@@ -16,7 +17,8 @@ const OIL = preload("res://Scenes/Oil/Oil.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	debug_dot.visible = debug
-	start_timer()
+	if (oilEnabled):
+		start_timer()
 	progress_ratio = randf()
 
 
