@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://wkc5nwc2sfxm"]
+
+[ext_resource type="FontFile" uid="uid://bxlbrwr83dlut" path="res://Assets/Fonts/PressStart2P-Regular.ttf" id="1_ai7no"]
+[ext_resource type="Script" uid="uid://ckcs4ws7kim2b" path="res://Scenes/Countdown/CountDown.gd" id="1_dean5"]
+[ext_resource type="AudioStream" uid="uid://bwnh6jwknmsiu" path="res://Assets/Sounds/391650__jeckkech__beep.wav" id="3_ikbvx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_t4p3i"]
+font = ExtResource("1_ai7no")
+font_size = 72
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Countdown" type="Control" unique_id=1559925316]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dean5")
+
+[node name="Label" type="Label" parent="." unique_id=2115135960]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "3"
+label_settings = SubResource("LabelSettings_t4p3i")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="." unique_id=1544670296]
+
+[node name="Beep" type="AudioStreamPlayer" parent="." unique_id=1959122005]
+stream = ExtResource("3_ikbvx")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

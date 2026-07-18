@@ -6,15 +6,20 @@ const STEER_REACTION_MAX := 9.0
 
 @export var waypoint_distance := 20.0
 @export var debug := true
+@export var min_top_speed_limit := 200.0
+@export var max_top_speed_limit := 300.0
+
 @onready var target_sprite = $TargetSprite
 
 var adjusted_waypoint_target := Vector2.ZERO
 var steer_reaction := STEER_REACTION_MAX
 var target_speed := 250.0 
+
 var next_waypoint : Waypoint
 
 func _ready():
 	target_sprite.visible = debug
+	target_speed = randf_range(min_top_speed_limit, max_top_speed_limit)
 	super()
 	
 func update_waypoint():
