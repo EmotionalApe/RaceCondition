@@ -7,20 +7,13 @@ class_name PlayerCar
 @export var friction := 150.0
 @export var steerStrength := 6.0
 @export var minSteerFactor := 0.5
-
-
 var throttle : float
 var steer : float
 
-var verifications_passed = []
-var verifications = []
-
-
 func _ready():
-		verifications = get_tree().get_nodes_in_group("verifications")
-		super()
-		
-		
+	super()
+	pass
+
 func _process(delta):
 	throttle = Input.get_action_strength("ui_up")
 	steer = Input.get_axis("ui_left", "ui_right")
@@ -52,17 +45,3 @@ func get_steer_factor():
 func apply_steer(delta):
 	rotate(steer * get_steer_factor() * delta)
 	
-	
-	
-func lap_completed():
-	if verifications.size() == verifications_passed.size() :
-		var lcd = LapCompleteData.new(self, lap_time)
-		print(lcd)
-		EventHub.emit_on_lap_completed(lcd)
-	verifications_passed.clear()
-	super()
-	
-func hit_verification(verification_id):
-	if verification_id not in verifications_passed:
-		verifications_passed.append(verification_id)
-		pass

@@ -18,6 +18,9 @@ var velocity : float
 var bounce_tween : Tween
 var bounce_target := Vector2.ZERO
 var lap_time : float
+var verifications_passed = []
+var verifications = []
+
 
 var slip_tween : Tween
 
@@ -26,13 +29,14 @@ var state := CarState.WAITING
 
 
 func _ready():
-	#verifications = get_tree().get_nodes_in_group("verifications")'
+	verifications = get_tree().get_nodes_in_group("verifications")
 	EventHub.on_race_start.connect(on_race_start)
 	set_physics_process(false)
 	car_sprite.texture = carTexture
 
 func on_race_start():
 	change_state(CarState.DRIVING)
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -107,5 +111,15 @@ func hit_oil():
 #endregion
 
 func lap_completed():
+	if verifications.size() == verifications_passed.size() :
+		var lcd = LapCompleteData.new(self, lap_time)
+		print(lcd)
+		EventHub.emit_on_lap_completed(lcd)
+	verifications_passed.clear()
 	lap_time = 0.0
+	
+func hit_verification(verification_id):
+	if verification_id not in verifications_passed:
+		verifications_passed.append(verification_id)
+		pass
 	

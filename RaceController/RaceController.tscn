@@ -4,3 +4,9 @@
 
 [node name="RaceController" type="Node" unique_id=463910295]
 script = ExtResource("1_18jcy")
+
+[node name="RaceOverTimer" type="Timer" parent="." unique_id=1867721329]
+wait_time = 4.0
+one_shot = true
+
+[connection signal="timeout" from="RaceOverTimer" to="." method="_on_race_over_timer_timeout"]
