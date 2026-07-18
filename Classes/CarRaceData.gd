@@ -27,3 +27,9 @@ func add_lap_time(lap_time):
 	completedLaps += 1
 	bestLap = min(bestLap, lap_time)
 	
+func set_total_time(total_time: float):
+	totalTime = total_time
+
+func force_finish(total_time : float, progress : float):
+	partialProgress = progress
+	totalTime = total_time

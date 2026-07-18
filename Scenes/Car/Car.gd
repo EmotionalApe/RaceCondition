@@ -1,7 +1,7 @@
 extends Area2D
 class_name Car
 
-enum CarState {WAITING, DRIVING, BOUNCING, SLIPPING}
+enum CarState {WAITING, DRIVING, BOUNCING, SLIPPING, RACEOVER}
 
 @export var carTexture : Texture2D = preload("uid://b7wmt1hcagsow")
 @export var carName := "Maruf"
@@ -45,7 +45,8 @@ func _process(delta):
 
 #region State
 func change_state(newState : CarState):
-	if (newState == state) : return;
+	if (newState == state) : return
+	if (state == CarState.RACEOVER): return
 	state = newState
 	match newState:
 		CarState.BOUNCING:
@@ -54,6 +55,8 @@ func change_state(newState : CarState):
 			slip_on_oil()
 		CarState.DRIVING:
 			set_physics_process(true)
+		CarState.RACEOVER:
+			set_physics_process(false)
 #endregion
 
 

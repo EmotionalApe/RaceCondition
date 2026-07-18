@@ -4,6 +4,8 @@
 
 [node name="RaceController" type="Node" unique_id=463910295]
 script = ExtResource("1_18jcy")
+total_laps = 2
+raceOverWaitTime = 2.0
 
 [node name="RaceOverTimer" type="Timer" parent="." unique_id=1867721329]
 wait_time = 4.0
