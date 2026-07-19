@@ -2,11 +2,22 @@ extends Control
 
 class_name GameUI
 @export var v_box_container: VBoxContainer
+@onready var race_over_label = $PanelContainer/RaceOverLabel
+@onready var panel_container = $PanelContainer
 
 var car_ui_dict : Dictionary[Car, CarUI] = {}
 
 func _enter_tree():
 	EventHub.on_lap_update.connect(on_lap_update)
+	EventHub.on_race_over.connect(on_race_over)
+
+func on_race_over(data : Array[CarRaceData]):
+	race_over_label.text = "%10s %6s %6s %5s" % [
+		"Car", "Time", "Best", "Laps"
+	]
+	for d in data : race_over_label.text += "\n%s" % d
+	panel_container.show()
+	get_tree().paused = true
 
 func setup(cars : Array[Car]):
 	var ui_nodes : Array[Node] 

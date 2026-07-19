@@ -53,7 +53,9 @@ func finish_race():
 			var progress := offset / totalLen
 			rd.force_finish(elapsedTime, progress)
 			c.change_state(c.CarState.RACEOVER)
-	pass
+	var results:=raceData.values()
+	results.sort_custom(CarRaceData.compare)
+	EventHub.emit_on_race_over(results)
 
 func _enter_tree():
 	EventHub.on_lap_completed.connect(on_lap_completed)
