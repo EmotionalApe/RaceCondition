@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://danbvacqko16"]
+
+[ext_resource type="PackedScene" uid="uid://csoig5m0okgbe" path="res://Scenes/UI/CarUI/CarUi.tscn" id="1_e7p8g"]
+[ext_resource type="Script" uid="uid://beqvqxx7y6klt" path="res://Scenes/UI/GameUI/GameUi.gd" id="1_if2le"]
+[ext_resource type="LabelSettings" uid="uid://bx3kb01lqux8q" path="res://Resources/UILabel14.tres" id="1_s6vyq"]
+
+[node name="GameUI" type="Control" unique_id=1612186651 node_paths=PackedStringArray("v_box_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_if2le")
+v_box_container = NodePath("MarginContainer/VBoxContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1257476569]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=299315205]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1176324043]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1878810325]
+layout_mode = 2
+text = "DRIVER"
+label_settings = ExtResource("1_s6vyq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=555414585]
+layout_mode = 2
+text = "LAP"
+label_settings = ExtResource("1_s6vyq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=545467395]
+layout_mode = 2
+text = "LAST"
+label_settings = ExtResource("1_s6vyq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CarUI" parent="MarginContainer/VBoxContainer" unique_id=568980921 instance=ExtResource("1_e7p8g")]
+layout_mode = 2
+
+[node name="CarUI2" parent="MarginContainer/VBoxContainer" unique_id=1368434036 instance=ExtResource("1_e7p8g")]
+layout_mode = 2
+
+[node name="CarUI3" parent="MarginContainer/VBoxContainer" unique_id=348577670 instance=ExtResource("1_e7p8g")]
+layout_mode = 2
+
+[node name="CarUI4" parent="MarginContainer/VBoxContainer" unique_id=118448670 instance=ExtResource("1_e7p8g")]
+layout_mode = 2

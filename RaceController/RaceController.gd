@@ -30,6 +30,12 @@ func on_lap_completed(info : LapCompleteData):
 	var car : Car = info.car
 	var rd : CarRaceData = raceData[car]
 	rd.add_lap_time(info.lapTime)
+	EventHub.emit_on_lap_update(
+		car,
+		rd.completedLaps,
+		info.lapTime
+	)
+	
 	if rd.raceCompleted:
 		car.change_state(car.CarState.RACEOVER)
 		rd.set_total_time(get_elapsed_time() - startTime)

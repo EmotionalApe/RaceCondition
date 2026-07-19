@@ -7,10 +7,12 @@ const DEFAULT_LAPTIME := 999.99
 var carNumber : int
 var carName : String 
 var totalTime := 0.0
-var completedLaps : int
 var partialProgress : float
 var bestLap := DEFAULT_LAPTIME
 var targetLaps := 0 
+
+var completedLaps : int:
+	get:return completedLaps
 
 var raceCompleted : bool:
 	get: return completedLaps == targetLaps
