@@ -30,6 +30,12 @@ func on_lap_completed(info : LapCompleteData):
 	var car : Car = info.car
 	var rd : CarRaceData = raceData[car]
 	rd.add_lap_time(info.lapTime)
+	EventHub.emit_on_lap_update(
+		car,
+		rd.completedLaps,
+		info.lapTime
+	)
+	
 	if rd.raceCompleted:
 		car.change_state(car.CarState.RACEOVER)
 		rd.set_total_time(get_elapsed_time() - startTime)
@@ -47,7 +53,9 @@ func finish_race():
 			var progress := offset / totalLen
 			rd.force_finish(elapsedTime, progress)
 			c.change_state(c.CarState.RACEOVER)
-	pass
+	var results:=raceData.values()
+	results.sort_custom(CarRaceData.compare)
+	EventHub.emit_on_race_over(results)
 
 func _enter_tree():
 	EventHub.on_lap_completed.connect(on_lap_completed)

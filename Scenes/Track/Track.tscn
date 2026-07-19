@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dr8u06xrl4yv6" path="res://Assets/Images/CarPurple.png" id="10_pptq5"]
 [ext_resource type="Texture2D" uid="uid://dlry4iqrl31mt" path="res://Assets/Images/CarGreen.png" id="12_cc6kv"]
 [ext_resource type="PackedScene" uid="uid://wkc5nwc2sfxm" path="res://Scenes/Countdown/CountDown.tscn" id="14_cc6kv"]
+[ext_resource type="PackedScene" uid="uid://danbvacqko16" path="res://Scenes/UI/GameUI/GameUi.tscn" id="15_yb8n5"]
 
 [sub_resource type="Curve2D" id="Curve2D_0do6f"]
 _data = {
@@ -96,25 +97,28 @@ rotation = 0.4975313
 
 [node name="PlayerCar" parent="CarsHolder" unique_id=631794112 instance=ExtResource("8_2lgdg")]
 position = Vector2(332, 484)
+carNumber = 3
 
 [node name="CpuCar" parent="CarsHolder" unique_id=298689435 instance=ExtResource("9_iwdkm")]
 position = Vector2(261, 453)
 min_top_speed_limit = 300.0
 carTexture = ExtResource("10_m1acf")
 carName = "Sainz"
-carNumber = 30
+carNumber = 2
 
 [node name="CpuCar2" parent="CarsHolder" unique_id=1119559754 instance=ExtResource("9_iwdkm")]
 position = Vector2(264, 498)
 min_top_speed_limit = 180.0
 carTexture = ExtResource("10_pptq5")
 carName = "Ocon"
+carNumber = 7
 
 [node name="CpuCar3" parent="CarsHolder" unique_id=536082692 instance=ExtResource("9_iwdkm")]
 position = Vector2(329, 444)
 min_top_speed_limit = 150.0
 carTexture = ExtResource("12_cc6kv")
 carName = "Hulkenberg"
+carNumber = 2
 
 [node name="RaceController" parent="." unique_id=463910295 instance=ExtResource("8_pxc04")]
 
@@ -123,6 +127,8 @@ carName = "Hulkenberg"
 [node name="UICanvas" type="CanvasLayer" parent="." unique_id=733193212]
 
 [node name="Countdown" parent="UICanvas" unique_id=1559925316 instance=ExtResource("14_cc6kv")]
+
+[node name="GameUI" parent="UICanvas" unique_id=1612186651 instance=ExtResource("15_yb8n5")]
 
 [connection signal="area_entered" from="TrackCollision" to="." method="_on_track_collision_area_entered"]
 [connection signal="area_entered" from="StartLine" to="." method="_on_start_line_area_entered"]
