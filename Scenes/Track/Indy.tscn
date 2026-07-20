@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://dtj7gwb0ft3kh"]
+
+[ext_resource type="PackedScene" uid="uid://4p751etw62qm" path="res://Scenes/Track/Track.tscn" id="1_xi86f"]
+[ext_resource type="Texture2D" uid="uid://dse66hhdlvl0d" path="res://Assets/Images/MetalBg.png" id="2_c36w2"]
+[ext_resource type="Texture2D" uid="uid://b4wqh7vvtom1a" path="res://Assets/Images/Indy.png" id="3_27bn5"]
+
+[sub_resource type="Curve2D" id="Curve2D_cdgfx"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 479, 451, 0, 0, 0, 0, 515, 474, 0, 0, 0, 0, 561, 502, 0, 0, 0, 0, 641, 542, 0, 0, 0, 0, 682, 558, 0, 0, 0, 0, 716, 571, -34.861, 19.834707, 34.861, -19.834707, 787, 579, 0, 0, 0, 0, 822, 496, 0, 0, 0, 0, 830, 457, 0, 0, 0, 0, 857, 408, 0, 0, 0, 0, 902, 353, 0, 0, 0, 0, 937, 309, 0, 0, 0, 0, 987, 258, 0, 0, 0, 0, 1017, 231, 0, 0, 0, 0, 1041, 197, 15.895583, 27.320534, -15.895583, -27.320534, 1053, 139, 0, 0, 0, 0, 1013, 104, 0, 0, 0, 0, 948, 85, 0, 0, 0, 0, 894, 73, 0, 0, 0, 0, 833, 66, 0, 0, 0, 0, 770, 63, 0, 0, 0, 0, 703, 69, 0, 0, 0, 0, 612, 85, 0, 0, 0, 0, 559, 92, 0, 0, 0, 0, 480, 110, 0, 0, 0, 0, 400, 137, 0, 0, 0, 0, 359, 149, 21.310019, -29.50618, -21.310019, 29.50618, 298, 190, 0, 0, 0, 0, 296, 261, 0, 0, 0, 0, 313, 289, 0, 0, 0, 0, 335, 322, 0, 0, 0, 0, 374, 362, 0, 0, 0, 0, 407, 388, 0, 0, 0, 0, 479, 451)
+}
+point_count = 34
+
+[node name="Indy" unique_id=2131199822 instance=ExtResource("1_xi86f")]
+
+[node name="Background" parent="." index="0" unique_id=1318502248]
+texture = ExtResource("2_c36w2")
+
+[node name="TrackImage" parent="." index="1" unique_id=1796102886]
+position = Vector2(681, 323.00003)
+scale = Vector2(0.62, 0.62)
+texture = ExtResource("3_27bn5")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TrackCollision" parent_id_path=PackedInt32Array(1442703981) index="0" unique_id=1628797054]
+polygon = PackedVector2Array(364, 224, 378, 273, 404, 311, 420, 330, 507, 409, 677, 497, 743, 512, 764, 442, 786, 402, 851, 318, 972, 201, 993, 168, 930, 139, 866, 127, 790, 126, 728, 127, 653, 134, 560, 150, 480, 171, 418, 195)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="TrackCollision" parent_id_path=PackedInt32Array(1442703981) index="1" unique_id=1619091228]
+polygon = PackedVector2Array(591, 32, 500, 48, 423, 72, 356, 97, 312, 120, 264, 164, 249, 228, 263, 291, 308, 373, 400, 464, 482, 524, 620, 595, 758, 635, 818, 625, 853, 599, 865, 556, 862, 497, 901, 434, 959, 369, 1049, 283, 1092, 231, 1112, 169, 1094, 107, 1025, 58, 906, 21, 836, 14, 760, 13, 688, 17, 598, 31, 573, -37, 1090, -33, 1255, 383, 890, 695, 471, 731, 255, 445, 183, 169, 312, 16, 528, -37)
+
+[node name="TrackPath" parent="." index="3" unique_id=532038351]
+curve = SubResource("Curve2D_cdgfx")
+
+[node name="OilDropper" parent="TrackPath" index="0" unique_id=962719517]
+position = Vector2(479, 451)
+rotation = 0.56852454
+
+[node name="OilDropper2" parent="TrackPath" index="1" unique_id=927211811]
+position = Vector2(479, 451)
+rotation = 0.56852454
+
+[node name="TrackProcessor" parent="TrackPath" index="2" unique_id=1742298289]
+position = Vector2(479, 451)
+rotation = 0.56852454
+
+[node name="StartLine" parent="." index="5" unique_id=1430295588]
+position = Vector2(443.99997, 429.99997)
+rotation = -0.84125113
+
+[node name="Verification" parent="VerificationsHolder" parent_id_path=PackedInt32Array(522457335) index="0" unique_id=452448386]
+position = Vector2(783, 571)
+rotation = 1.0542763
+
+[node name="Verification2" parent="VerificationsHolder" parent_id_path=PackedInt32Array(522457335) index="1" unique_id=1038670386]
+position = Vector2(1043, 157.00002)
+rotation = -0.079165876
+
+[node name="Verification3" parent="VerificationsHolder" parent_id_path=PackedInt32Array(522457335) index="2" unique_id=196336344]
+position = Vector2(436, 123.999985)
+rotation = 1.0488291
+
+[node name="PlayerCar" parent="CarsHolder" parent_id_path=PackedInt32Array(309213574) index="0" unique_id=631794112]
+position = Vector2(405, 364.99997)
+rotation = 0.72761565
+
+[node name="CpuCar" parent="CarsHolder" parent_id_path=PackedInt32Array(309213574) index="1" unique_id=298689435]
+position = Vector2(338, 362)
+rotation = 0.72761565
+
+[node name="CpuCar2" parent="CarsHolder" parent_id_path=PackedInt32Array(309213574) index="2" unique_id=1119559754]
+position = Vector2(378, 404.00003)
+rotation = 0.72761565
+
+[node name="CpuCar3" parent="CarsHolder" parent_id_path=PackedInt32Array(309213574) index="3" unique_id=536082692]
+position = Vector2(373.99997, 328)
+rotation = 0.72761565
