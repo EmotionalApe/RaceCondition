@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://b5ke6xa4w4tg8"]
+
+[ext_resource type="PackedScene" uid="uid://4p751etw62qm" path="res://Scenes/Track/Track.tscn" id="1_xxpom"]
+[ext_resource type="Texture2D" uid="uid://2msta3ane5h5" path="res://Assets/Images/WaterBg.png" id="2_16g27"]
+[ext_resource type="Texture2D" uid="uid://c1m5vk3rejca7" path="res://Assets/Images/Monaco.png" id="3_r7so3"]
+
+[sub_resource type="Curve2D" id="Curve2D_sqois"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 502, 452, -28.749601, 45.7864, 50.0456, -86.2488, 889, 537, -45.7864, 62.8232, 45.7864, -62.8232, 734, 303, -44.7216, 88.3784, 33.0088, -76.6656, 1035, 292, 28.749601, -14.9072, -103.2856, 19.1664, 724, 58, 88.3784, -15.972, -72.4064, -29.8144, 509, 266, 37.268, -17.0368, -57.499203, -10.648001, 349, 97, 0, 0, 0, 0, 169, 249, -41.527203, -18.1016, 20.231201, 76.6656, 135, 436, 0, 0, 0, 0, 301, 478, 0, 0, 0, 0, 502, 452)
+}
+point_count = 11
+
+[node name="Monaco" unique_id=2131199822 instance=ExtResource("1_xxpom")]
+
+[node name="Background" parent="." index="0" unique_id=1318502248]
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_16g27")
+
+[node name="TrackImage" parent="." index="1" unique_id=1796102886]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_r7so3")
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="TrackCollision" parent_id_path=PackedInt32Array(1442703981) index="0" unique_id=1149464833]
+polygon = PackedVector2Array(507, 175, 434, 73, 376, 35, 305, 61, 226, 103, 140, 196, 110, 245, 81, 311, 72, 414, 111, 495, 172, 534, 279, 542, 471, 514, 592, 541, 714, 582, 795, 607, 886, 621, 944, 600, 973, 523, 951, 459, 914, 420, 816, 353, 958, 370, 1017, 362, 1057, 335, 1084, 297, 1090, 258, 1071, 202, 1044, 165, 966, 107, 880, 63, 799, 27, 713, 11, 642, 51, 561, 131, 520, 179, 546, 0, 1060, -30, 1170, -22, 1121, 623, 892, 674, 36, 680, 39, 137, 46, -2, 481, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TrackCollision" parent_id_path=PackedInt32Array(1442703981) index="1" unique_id=343112957]
+polygon = PackedVector2Array(349, 185, 273, 233, 222, 297, 194, 354, 205, 412, 250, 420, 318, 411, 406, 397, 491, 391, 583, 410, 755, 464, 698, 411, 674, 363, 672, 317, 693, 264, 740, 231, 797, 226, 930, 240, 820, 171, 735, 147, 691, 175, 644, 224, 557, 315, 498, 333, 442, 294)
+
+[node name="TrackPath" parent="." index="3" unique_id=532038351]
+curve = SubResource("Curve2D_sqois")
