@@ -15,10 +15,15 @@ const OIL = preload("res://Scenes/Oil/Oil.tscn")
 @onready var drop_timer = $DropTimer
 
 # Called when the node enters the scene tree for the first time.
+
+func _enter_tree():
+	EventHub.on_race_start.connect(start_oil)
+
+func start_oil():
+	if (oilEnabled) : start_timer()
+
 func _ready():
 	debug_dot.visible = debug
-	if (oilEnabled):
-		start_timer()
 	progress_ratio = randf()
 
 
