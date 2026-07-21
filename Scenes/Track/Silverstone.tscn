@@ -61,19 +61,19 @@ rotation = -0.013258994
 [node name="PlayerCar" parent="CarsHolder" parent_id_path=PackedInt32Array(309213574) index="0" unique_id=631794112]
 position = Vector2(776, 124)
 rotation = -3.1213837
-carNumber = 0
+carNumber = 1
 
 [node name="CpuCar" parent="CarsHolder" parent_id_path=PackedInt32Array(309213574) index="1" unique_id=298689435]
 position = Vector2(705, 93)
 rotation = -3.1213837
-carNumber = 30
+carNumber = 3
 
 [node name="CpuCar2" parent="CarsHolder" parent_id_path=PackedInt32Array(309213574) index="2" unique_id=1119559754]
 position = Vector2(708, 138)
 rotation = -3.1213837
-carNumber = 0
+carNumber = 2
 
 [node name="CpuCar3" parent="CarsHolder" parent_id_path=PackedInt32Array(309213574) index="3" unique_id=536082692]
 position = Vector2(773, 84)
 rotation = -3.1213837
-carNumber = 0
+carNumber = 5

@@ -12,10 +12,17 @@
 [ext_resource type="Texture2D" uid="uid://dr8u06xrl4yv6" path="res://Assets/Images/CarPurple.png" id="10_pptq5"]
 [ext_resource type="Texture2D" uid="uid://dlry4iqrl31mt" path="res://Assets/Images/CarGreen.png" id="12_cc6kv"]
 [ext_resource type="PackedScene" uid="uid://wkc5nwc2sfxm" path="res://Scenes/Countdown/CountDown.tscn" id="14_cc6kv"]
+[ext_resource type="AudioStream" uid="uid://j5ukorijaeag" path="res://Assets/Sounds/8_Bit_Adventure.mp3" id="14_yb8n5"]
+[ext_resource type="AudioStream" uid="uid://drwp4useeebw8" path="res://Assets/Sounds/cool_highway_bpm140.ogg" id="15_t887p"]
 [ext_resource type="PackedScene" uid="uid://danbvacqko16" path="res://Scenes/UI/GameUI/GameUi.tscn" id="15_yb8n5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6d5m8"]
 size = Vector2(128, 16)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_np2yo"]
+streams_count = 2
+stream_0/stream = ExtResource("14_yb8n5")
+stream_1/stream = ExtResource("15_t887p")
 
 [node name="Track" type="Node" unique_id=2131199822]
 script = ExtResource("1_0do6f")
@@ -110,6 +117,11 @@ carNumber = 2
 [node name="Countdown" parent="UICanvas" unique_id=1559925316 instance=ExtResource("14_cc6kv")]
 
 [node name="GameUI" parent="UICanvas" unique_id=1612186651 instance=ExtResource("15_yb8n5")]
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1484580306]
+stream = SubResource("AudioStreamRandomizer_np2yo")
+volume_db = -15.0
+autoplay = true
 
 [connection signal="area_entered" from="TrackCollision" to="." method="_on_track_collision_area_entered"]
 [connection signal="area_entered" from="StartLine" to="." method="_on_start_line_area_entered"]

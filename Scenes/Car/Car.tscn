@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://be1x11ki6vk37" path="res://Scenes/Car/Car.gd" id="1_6tdsx"]
 [ext_resource type="Texture2D" uid="uid://b7wmt1hcagsow" path="res://Assets/Images/CarRed.png" id="1_30pye"]
 [ext_resource type="Texture2D" uid="uid://blv5vu5ryjp8t" path="res://Assets/Images/Dot.png" id="3_a0hww"]
+[ext_resource type="AudioStream" uid="uid://cmuepgti2ka1p" path="res://Assets/Sounds/f1_engine.ogg" id="4_0xp4x"]
+[ext_resource type="AudioStream" uid="uid://wfbamkpxl5g4" path="res://Assets/Sounds/273478_spin-01.wav" id="4_kj2ht"]
+[ext_resource type="AudioStream" uid="uid://bbl8wdfnjjl0j" path="res://Assets/Sounds/391669__jeckkech__crash.wav" id="6_vlo0y"]
+[ext_resource type="AudioStream" uid="uid://cio1nqbwe0xw0" path="res://Assets/Sounds/277214_8-bit-powerup-get-something-big.wav" id="7_rylaw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ohooe"]
 radius = 8.0
@@ -45,3 +49,19 @@ scale_amount_min = 0.01
 scale_amount_max = 0.03
 scale_amount_curve = SubResource("Curve_sbu84")
 color = Color(1, 0.4862745, 0.07450981, 1)
+
+[node name="EngineSound" type="AudioStreamPlayer2D" parent="." unique_id=1127148402]
+stream = ExtResource("4_0xp4x")
+volume_db = -12.0
+
+[node name="CrashSound" type="AudioStreamPlayer2D" parent="." unique_id=1103117786]
+stream = ExtResource("6_vlo0y")
+volume_db = 3.0
+
+[node name="SlipSound" type="AudioStreamPlayer2D" parent="." unique_id=382832123]
+stream = ExtResource("4_kj2ht")
+volume_db = -12.0
+
+[node name="LapSound" type="AudioStreamPlayer2D" parent="." unique_id=2128008340]
+stream = ExtResource("7_rylaw")
+volume_db = -6.0
