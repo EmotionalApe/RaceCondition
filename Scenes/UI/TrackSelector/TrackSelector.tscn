@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://c8tsycru3hd4h"]
+
+[ext_resource type="Texture2D" uid="uid://bw48nm51i6v4h" path="res://Assets/Images/Silverstone.png" id="1_ab0hp"]
+[ext_resource type="Script" uid="uid://dkoa33wxvvpvd" path="res://Scenes/UI/TrackSelector/TrackSelector.gd" id="1_ndwtu"]
+[ext_resource type="LabelSettings" uid="uid://c5lj3v0mnqvsq" path="res://Resources/UILabel32.tres" id="2_420lf"]
+[ext_resource type="FontFile" uid="uid://bxlbrwr83dlut" path="res://Assets/Fonts/PressStart2P-Regular.ttf" id="3_ndwtu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fehh3"]
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_73n0u"]
+font = ExtResource("3_ndwtu")
+font_size = 22
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 8
+
+[node name="TrackSelector" type="PanelContainer" unique_id=168531819]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_fehh3")
+script = ExtResource("1_ndwtu")
+
+[node name="Highlight" type="ColorRect" parent="." unique_id=314771751]
+layout_mode = 2
+color = Color(0.07450981, 0.12941177, 0.21176471, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1373518809]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer" unique_id=1232911799]
+layout_mode = 2
+texture = ExtResource("1_ab0hp")
+expand_mode = 1
+
+[node name="TrackLabel" type="Label" parent="MarginContainer" unique_id=1611970064]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Trackkkkksw"
+label_settings = ExtResource("2_420lf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BestLapLabel" type="Label" parent="MarginContainer" unique_id=25900525]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Best 00.00s"
+label_settings = SubResource("LabelSettings_73n0u")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

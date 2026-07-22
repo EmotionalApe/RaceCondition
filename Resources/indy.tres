@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="TrackInfo" format=3 uid="uid://djj4akhogaojc"]
+
+[ext_resource type="Script" uid="uid://5flx4cogtq1m" path="res://Classes/TrackInfo.gd" id="1_wgqts"]
+[ext_resource type="Texture2D" uid="uid://b4wqh7vvtom1a" path="res://Assets/Images/Indy.png" id="1_xq5ah"]
+[ext_resource type="PackedScene" uid="uid://dtj7gwb0ft3kh" path="res://Scenes/Track/Indy.tscn" id="3_gpkus"]
+
+[resource]
+script = ExtResource("1_wgqts")
+trackName = "Indy"
+trackScene = ExtResource("3_gpkus")
+previewImage = ExtResource("1_xq5ah")
+metadata/_custom_type_script = "uid://5flx4cogtq1m"

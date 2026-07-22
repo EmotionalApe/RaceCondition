@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://c5lj3v0mnqvsq"]
+
+[ext_resource type="FontFile" uid="uid://bxlbrwr83dlut" path="res://Assets/Fonts/PressStart2P-Regular.ttf" id="1_pysbf"]
+
+[resource]
+font = ExtResource("1_pysbf")
+font_size = 32
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 8
