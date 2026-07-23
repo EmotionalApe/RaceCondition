@@ -36,6 +36,9 @@ func on_lap_completed(info : LapCompleteData):
 		info.lapTime
 	)
 	
+	if car is PlayerCar:
+		GameManager.save_best_lap(info.lapTime)
+	
 	if rd.raceCompleted:
 		car.change_state(car.CarState.RACEOVER)
 		rd.set_total_time(get_elapsed_time() - startTime)
