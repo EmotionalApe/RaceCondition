@@ -8,6 +8,10 @@ const STEER_REACTION_MAX := 9.0
 @export var debug := true
 @export var min_top_speed_limit := 200.0
 @export var max_top_speed_limit := 300.0
+@export var max_bottom_speed_limit := 120.0
+@export var min_bottom_speed_limit := 80.0
+@export var speed_reaction := 2.0
+
 
 @onready var target_sprite = $TargetSprite
 
@@ -19,12 +23,17 @@ var next_waypoint : Waypoint
 
 func _ready():
 	target_sprite.visible = debug
-	target_speed = randf_range(min_top_speed_limit, max_top_speed_limit)
+	target_speed = max_top_speed_limit
 	super()
 	
 func update_waypoint():
 	if global_position.distance_to(adjusted_waypoint_target) < waypoint_distance:
-		set_next_waypoint(next_waypoint.next_waypoint)
+		set_next_waypoint(next_waypoint.next_waypoint) 
+		target_speed = lerp(
+			max_bottom_speed_limit, 
+			max_top_speed_limit,
+			next_waypoint.next_waypoint.radius_factor
+		)
 
 func set_next_waypoint(wp : Waypoint):
 	next_waypoint = wp
@@ -38,7 +47,7 @@ func _physics_process(delta):
 	
 	var targetAngle = (adjusted_waypoint_target - global_position).angle()
 	rotation = lerp_angle(rotation, targetAngle, steer_reaction * delta)
-	velocity = lerp(velocity, target_speed, delta)
+	velocity = lerp(velocity, target_speed, speed_reaction * delta)
 	position += transform.x * velocity * delta
 	update_waypoint()
 	

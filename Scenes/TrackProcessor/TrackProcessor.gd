@@ -8,6 +8,7 @@ signal build_completed
 
 @export var interval := 50.0 
 @export var grid_space := 75.0
+@export var radius_curve : Curve
 
 var waypoints : Array[Waypoint] 
 var first_waypoint : Waypoint:
@@ -16,6 +17,14 @@ var first_waypoint : Waypoint:
 			printerr("first waypoint not there")
 			return null
 		return waypoints[0]
+
+func calculate_radius():
+	var min_radius : float = Waypoint.MAX_RADIUS
+	for wp in waypoints:
+		wp.calc_turn_radius()
+		min_radius = min(min_radius, wp.radius)
+	for wp in waypoints: 
+		wp.set_radius_factor(min_radius, radius_curve)
 
 func connect_waypoints():
 	var total_wp := waypoints.size() 
@@ -46,5 +55,7 @@ func build_waypoint_data(holder):
 	waypoints.clear()
 	await generate_waypoints(holder)
 	connect_waypoints()
+	calculate_radius()
+	#for wp in waypoints: print(wp)
 	
 	build_completed.emit()

@@ -2,6 +2,13 @@
 
 [ext_resource type="Script" uid="uid://fj7hxek2dkje" path="res://Scenes/TrackProcessor/TrackProcessor.gd" id="1_gdbed"]
 
+[sub_resource type="Curve" id="Curve_gdbed"]
+_data = [Vector2(0, 0), 0.0, 2.5384634, 0, 0, Vector2(0.2733918, 0.44939274), 2.0890675, 2.0890675, 0, 0, Vector2(0.48245618, 0.9433199), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
 [node name="TrackProcessor" type="PathFollow2D" unique_id=1742298289]
 loop = false
 script = ExtResource("1_gdbed")
+interval = null
+grid_space = null
+radius_curve = SubResource("Curve_gdbed")

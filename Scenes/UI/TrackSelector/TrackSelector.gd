@@ -23,10 +23,6 @@ func _ready():
 	else :
 		best_lap_label.text = "Best: %.fs" % best_lap
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 
 func _on_mouse_entered():
 	highlight.color = LIGHT
